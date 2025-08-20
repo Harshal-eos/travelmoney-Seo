@@ -6,7 +6,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/app/lib/utils';
 import { useIsMobile } from '@/app/hooks/use-mobile';
-
+import Image from "next/image"
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
@@ -69,13 +69,13 @@ const Navbar: React.FC = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img 
-            src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png" 
-            alt="TravelMoney Logo" 
-            className="h-8 md:h-10"
-            width="107"
-            height="40"
-          />
+          <Image
+  src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png"
+  alt="TravelMoney Logo"
+  className="h-8 md:h-10"
+  width={107}
+  height={40}
+/>
         </Link>
 
         {/* Desktop Navigation */}

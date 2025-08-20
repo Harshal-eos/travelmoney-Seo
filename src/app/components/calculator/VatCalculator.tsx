@@ -21,7 +21,7 @@ const VatCalculator: React.FC = () => {
   const competitorRefund = vatAmount * (1 - effectiveCompetitorFeeRate / 100);
   
   const savings = travelMoneyRefund - competitorRefund;
-  const savingsPercentage = (savings / competitorRefund) * 100;
+  // const savingsPercentage = (savings / competitorRefund) * 100;
   
   const formatCurrency = (amount: number): string => {
     return new Intl.NumberFormat('en-US', { 
