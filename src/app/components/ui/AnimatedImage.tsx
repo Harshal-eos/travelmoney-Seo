@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/app/lib/utils';
 
 interface AnimatedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   animationDelay?: number;
