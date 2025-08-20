@@ -1,11 +1,18 @@
-import Hero from "./components/Hero";
+import Hero from "./components/sections/Hero";
+import Navbar from "./components/layout/Navbar";
 import Features from "./Features";
 
 export default function Home() {
   return (
-    <div>
-      <Hero/>
-      <Features/>
-    </div>
+    <>
+
+    <Navbar/>
+
+
+      <main className="overflow-hidden">
+        <Hero />
+        <Features />
+      </main>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import WaitlistForm from './WaitlistForm';
+// import WaitlistForm from './WaitlistForm';
 import UserAvatars from './UserAvatars';
 
 const HeroContent = () => {
@@ -8,7 +8,7 @@ const HeroContent = () => {
     <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
       <div className="flex flex-col items-center lg:items-start space-y-4">
         <Image
-          src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png"
+          src="/lovable-uploads/cf1cdbca-095a-4a13-a91a-5e267470df59.png"
           alt="TravelMoney Logo"
           width={64}
           height={64}
@@ -29,7 +29,7 @@ const HeroContent = () => {
       </p>
 
       {/* Email waitlist form */}
-      <WaitlistForm />
+      {/* <WaitlistForm /> */}
 
       {/* User avatars and count */}
       <UserAvatars />
