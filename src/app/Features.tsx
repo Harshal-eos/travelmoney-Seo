@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import VatCalculator from './components/calculator/VatCalculator';
 
+
+
 const features = [
   {
     icon: <Banknote className="h-12 w-12 text-travel-blue" />,
