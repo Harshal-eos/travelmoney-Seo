@@ -41,6 +41,9 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
   animationDelay = 0,
   animationType = "fade-in",
   blurPlaceholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+  width,
+  height,
+  fill,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -86,7 +89,11 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
       <Image
         src={imgSrc}
         alt={alt}
-        onLoadingComplete={() => setIsLoaded(true)}
+        // Handle width/height requirements for Next.js Image
+        width={fill ? undefined : (width || 800)}
+        height={fill ? undefined : (height || 450)}
+        fill={fill}
+        onLoad={() => setIsLoaded(true)}
         className={cn(
           "transition-all duration-700",
           isVisible && isLoaded ? ANIMATIONS[animationType] : "opacity-0",

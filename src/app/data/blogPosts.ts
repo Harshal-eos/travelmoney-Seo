@@ -1,15 +1,15 @@
-import { BlogPost } from '../types/blog';
-import { vatRefundGuideContent } from './blogContent';
+import { BlogPost } from "../types/blog";
+import { vatRefundGuideContent } from "./blogContent";
 
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: 'VAT Refund Guide',
-    slug: 'vat-refund-guide',
-    image: '/images/vat-guide.jpg', // add your image path
-    date: '2025-08-20', // example date
-    author: 'Harshal Ogale',
-    category: 'Travel',
+    title: "VAT Refund Guide",
+    slug: "vat-refund-france", // 👈 make this match the URL you want
+    image: "/images/vat-guide.jpg",
+    date: "2025-08-20",
+    author: "Harshal Ogale",
+    category: "Travel",
     content: vatRefundGuideContent,
   },
 ];

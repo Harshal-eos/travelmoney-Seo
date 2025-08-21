@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { ArrowRight, Check } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { toast } from 'sonner';
-// import { supabase } from '@/integrations/supabase/client';
-
+import React, { useState } from "react";
+import { ArrowRight, Check } from "lucide-react";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { toast } from "sonner";
+import { supabase } from "@/app/integration/supabase/supabaseClient";
 interface EmailCaptureState {
   email: string;
   isSubmitting: boolean;
@@ -16,13 +15,13 @@ interface EmailCaptureState {
 
 const EmailCapture: React.FC = () => {
   const [state, setState] = useState<EmailCaptureState>({
-    email: '',
+    email: "",
     isSubmitting: false,
     isSuccess: false,
   });
 
   const updateState = (updates: Partial<EmailCaptureState>) => {
-    setState(prev => ({ ...prev, ...updates }));
+    setState((prev) => ({ ...prev, ...updates }));
   };
 
   const validateEmail = (email: string): boolean => {
@@ -32,58 +31,56 @@ const EmailCapture: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+  
     if (!validateEmail(state.email)) {
       toast.error("Please enter a valid email address.");
       return;
     }
-
+  
     updateState({ isSubmitting: true });
-    
+  
     try {
-      // Insert email into the waitlist table
-      const { error } = await supabase
-        .from('waitlist')
-        .insert([{ 
+      const { error } = await supabase.from("waitlist").insert([
+        {
           email: state.email.toLowerCase().trim(),
-          created_at: new Date().toISOString() 
-        }]);
-      
+          created_at: new Date().toISOString(),
+        },
+      ]);
+  
       if (error) {
-        console.error('Error submitting to waitlist:', error);
-        
-        if (error.code === '23505') { // Unique violation error code
+        console.error("Error submitting to waitlist:", error);
+  
+        if (typeof error === 'object' && error !== null && 'code' in error && error.code === "23505") {
           toast.error("This email is already on our waitlist!");
         } else {
-          toast.error("There was an error joining the waitlist. Please try again.");
+          toast.error(
+            "There was an error joining the waitlist. Please try again."
+          );
         }
-        
+  
         updateState({ isSubmitting: false });
         return;
       }
-      
+  
       updateState({ isSuccess: true });
       toast.success("Thanks for joining our waitlist! We'll be in touch soon.");
-      
-      // Analytics tracking (if you use analytics)
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'waitlist_signup', {
-          event_category: 'engagement',
-          event_label: 'email_capture',
+  
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "waitlist_signup", {
+          event_category: "engagement",
+          event_label: "email_capture",
         });
       }
-      
-      // Reset form after 3 seconds for better UX
+  
       setTimeout(() => {
         updateState({
           isSuccess: false,
-          email: '',
+          email: "",
           isSubmitting: false,
         });
       }, 3000);
-      
     } catch (error) {
-      console.error('Unexpected error:', error);
+      console.error("Unexpected error:", error);
       toast.error("Something went wrong. Please try again.");
       updateState({ isSubmitting: false });
     }
@@ -94,40 +91,47 @@ const EmailCapture: React.FC = () => {
   };
 
   return (
-    <section 
+    <section
       className="py-12 px-6 md:px-12 relative overflow-hidden"
       aria-labelledby="email-capture-heading"
     >
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-travel-blue/5 -z-10" aria-hidden="true" />
-      <div 
-        className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-travel-blue/10 blur-3xl -z-10" 
+      <div
+        className="absolute inset-0 bg-travel-blue/5 -z-10"
         aria-hidden="true"
       />
-      <div 
-        className="absolute bottom-1/3 right-1/4 w-64 h-64 rounded-full bg-travel-blue-light/10 blur-3xl -z-10" 
+      <div
+        className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-travel-blue/10 blur-3xl -z-10"
         aria-hidden="true"
       />
-      
+      <div
+        className="absolute bottom-1/3 right-1/4 w-64 h-64 rounded-full bg-travel-blue-light/10 blur-3xl -z-10"
+        aria-hidden="true"
+      />
+
       <div className="container mx-auto max-w-7xl">
         <div className="max-w-4xl mx-auto glass rounded-3xl p-10 md:p-16 border border-white/20 shadow-xl">
           <div className="text-center mb-12 space-y-4">
             <span className="inline-block text-sm font-medium px-4 py-2 rounded-full bg-travel-blue/10 text-travel-blue">
               Join Waitlist
             </span>
-            <h2 
+            <h2
               id="email-capture-heading"
               className="text-3xl md:text-4xl font-bold leading-tight"
             >
-              <span className="text-gradient">Get 50%+ bigger refunds</span> with TravelMoney
+              <span className="text-gradient">
+                Get 50%+ bigger refunds
+              </span>{" "}
+              with TravelMoney
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Be the first to access our revolutionary VAT refund platform and maximize your travel savings.
+              Be the first to access our revolutionary VAT refund platform and
+              maximize your travel savings.
             </p>
           </div>
-          
-          <form 
-            onSubmit={handleSubmit} 
+
+          <form
+            onSubmit={handleSubmit}
             className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
             noValidate
           >
@@ -149,16 +153,20 @@ const EmailCapture: React.FC = () => {
                 maxLength={254}
               />
             </div>
-            
+
             <Button
               type="submit"
               className={`rounded-full h-12 px-6 min-w-[140px] transition-all duration-300 ${
                 state.isSuccess
-                  ? 'bg-green-500 hover:bg-green-600 focus:ring-green-500'
-                  : 'bg-travel-blue hover:bg-travel-blue-dark focus:ring-travel-blue'
+                  ? "bg-green-500 hover:bg-green-600 focus:ring-green-500"
+                  : "bg-travel-blue hover:bg-travel-blue-dark focus:ring-travel-blue"
               }`}
-              disabled={state.isSubmitting || state.isSuccess || !state.email.trim()}
-              aria-describedby={state.isSubmitting ? "loading-description" : undefined}
+              disabled={
+                state.isSubmitting || state.isSuccess || !state.email.trim()
+              }
+              aria-describedby={
+                state.isSubmitting ? "loading-description" : undefined
+              }
             >
               {state.isSubmitting ? (
                 <span className="flex items-center gap-2">
@@ -178,18 +186,18 @@ const EmailCapture: React.FC = () => {
               )}
             </Button>
           </form>
-          
+
           <div className="mt-8 text-center text-sm text-muted-foreground">
-            By subscribing, you agree to our{' '}
-            <Link 
-              href="/privacy" 
+            By subscribing, you agree to our{" "}
+            <Link
+              href="/privacy"
               className="text-travel-blue hover:underline focus:outline-none focus:ring-2 focus:ring-travel-blue focus:ring-offset-2 rounded-sm"
             >
               Privacy Policy
-            </Link>
-            {' '}and{' '}
-            <Link 
-              href="/terms" 
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/terms"
               className="text-travel-blue hover:underline focus:outline-none focus:ring-2 focus:ring-travel-blue focus:ring-offset-2 rounded-sm"
             >
               Terms of Service
@@ -202,32 +210,32 @@ const EmailCapture: React.FC = () => {
   );
 };
 
-// Loading spinner component for better reusability
+// Loading spinner component
 const LoadingSpinner: React.FC = () => (
-  <svg 
-    className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" 
-    xmlns="http://www.w3.org/2000/svg" 
-    fill="none" 
+  <svg
+    className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
     viewBox="0 0 24 24"
     aria-hidden="true"
   >
-    <circle 
-      className="opacity-25" 
-      cx="12" 
-      cy="12" 
-      r="10" 
-      stroke="currentColor" 
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
       strokeWidth="4"
     />
-    <path 
-      className="opacity-75" 
-      fill="currentColor" 
+    <path
+      className="opacity-75"
+      fill="currentColor"
       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
     />
   </svg>
 );
 
-// Type declaration for gtag (if using Google Analytics)
+// Type declaration for gtag (Google Analytics)
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
