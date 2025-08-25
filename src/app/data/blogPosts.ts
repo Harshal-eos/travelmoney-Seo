@@ -5,7 +5,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     title: "VAT Refund Guide",
-    slug: "vat-refund-france", // 👈 make this match the URL you want
+    slug: "vat-refund-france",
     image: "/images/vat-guide.jpg",
     date: "2025-08-20",
     author: "Harshal Ogale",
