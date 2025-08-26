@@ -49,8 +49,8 @@ const Merchants = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative flex justify-center">
-              <div className="w-full max-w-[340px] aspect-[9/19.5] animate-fade-up" style={{ animationDelay: '1200ms' }}>
+            <div className="relative flex justify-center" >
+              <div className="w-[400px] aspect-[9/19.5] animate-fade-up" style={{ animationDelay: '1200ms' }}>
                 <AnimatedImage 
                   src="/lovable-uploads/1d4a3652-6df9-4c16-9f3e-0ca628f191b5.png" 
                   alt="TravelMoney Merchant App" 
