@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer 
-      className="bg-travel-gray-light pt-20 pb-10 px-6 md:px-12" 
+      className="relative bg-white/70 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] pt-20 pb-10 px-6 md:px-12" 
       id="contact"
       role="contentinfo"
       aria-label="Site footer"

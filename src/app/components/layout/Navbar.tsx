@@ -27,8 +27,6 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = (): void => {
       const currentScrollY: number = window.scrollY;
-      
-      // Only track if scrolled for background styling
       setIsScrolled(currentScrollY > 10);
     };
 
@@ -55,7 +53,6 @@ const Navbar: React.FC = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4 px-6 md:px-12',
         isScrolled ? 'glass' : 'bg-transparent'
-        // Removed the translate transform that was hiding the navbar
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
@@ -72,8 +69,12 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         {!isMobile && (
           <nav className="hidden md:flex items-center gap-8">
+            <NavLink href="/">Shoppers</NavLink>
             <NavLink href="/merchants">Merchants</NavLink>
             <NavLink href="/blog">Blog</NavLink>
+            <NavLink href="/faq">FAQ</NavLink>
+            <NavLink href="/about">About</NavLink>
+            <NavLink href="/extension">Extension</NavLink>
             <Button
               className="bg-travel-blue hover:bg-travel-blue-dark text-white font-medium rounded-full px-6 transition-spring"
               onClick={scrollToWaitlist}
@@ -105,15 +106,12 @@ const Navbar: React.FC = () => {
           )}
         >
           <nav className="flex flex-col items-center justify-center h-full gap-8 p-8">
-            <MobileNavLink href="/merchants" onClick={() => setIsMenuOpen(false)}>
-              Merchants
-            </MobileNavLink>
-            <MobileNavLink href="/blog" onClick={() => setIsMenuOpen(false)}>
-              Blog
-            </MobileNavLink>
-            <MobileNavLink href="/#contact" onClick={() => setIsMenuOpen(false)}>
-              Contact
-            </MobileNavLink>
+            <MobileNavLink href="/shoppers" onClick={() => setIsMenuOpen(false)}>Shoppers</MobileNavLink>
+            <MobileNavLink href="/merchants" onClick={() => setIsMenuOpen(false)}>Merchants</MobileNavLink>
+            <MobileNavLink href="/blog" onClick={() => setIsMenuOpen(false)}>Blog</MobileNavLink>
+            <MobileNavLink href="/faq" onClick={() => setIsMenuOpen(false)}>FAQ</MobileNavLink>
+            <MobileNavLink href="/about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
+            <MobileNavLink href="/extension" onClick={() => setIsMenuOpen(false)}>Extension</MobileNavLink>
             <Button
               className="bg-travel-blue hover:bg-travel-blue-dark text-white font-medium rounded-full px-8 py-3 w-full max-w-xs transition-spring"
               onClick={scrollToWaitlist}
