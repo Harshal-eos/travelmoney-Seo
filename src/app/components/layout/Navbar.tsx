@@ -7,6 +7,7 @@ import { Button } from '../ui/button';
 import { cn } from '@/app/lib/utils';
 import { useIsMobile } from '@/app/hooks/use-mobile';
 import Image from "next/image"
+
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
@@ -20,8 +21,6 @@ interface MobileNavLinkProps {
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const isMobile = useIsMobile();
 
@@ -29,21 +28,13 @@ const Navbar: React.FC = () => {
     const handleScroll = (): void => {
       const currentScrollY: number = window.scrollY;
       
+      // Only track if scrolled for background styling
       setIsScrolled(currentScrollY > 10);
-      
-      // Show navbar when scrolled down below the fold, hide when at top
-      if (currentScrollY > window.innerHeight * 0.5) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen);
@@ -62,20 +53,20 @@ const Navbar: React.FC = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4 px-6 md:px-12 transform',
-        isScrolled ? 'glass' : 'bg-transparent',
-        isVisible ? 'translate-y-0' : '-translate-y-full'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4 px-6 md:px-12',
+        isScrolled ? 'glass' : 'bg-transparent'
+        // Removed the translate transform that was hiding the navbar
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image
-  src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png"
-  alt="TravelMoney Logo"
-  className="h-8 md:h-10"
-  width={107}
-  height={40}
-/>
+            src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png"
+            alt="TravelMoney Logo"
+            className="h-8 md:h-10"
+            width={107}
+            height={40}
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -83,7 +74,6 @@ const Navbar: React.FC = () => {
           <nav className="hidden md:flex items-center gap-8">
             <NavLink href="/merchants">Merchants</NavLink>
             <NavLink href="/blog">Blog</NavLink>
-            <NavLink href="/#contact">Contact</NavLink>
             <Button
               className="bg-travel-blue hover:bg-travel-blue-dark text-white font-medium rounded-full px-6 transition-spring"
               onClick={scrollToWaitlist}

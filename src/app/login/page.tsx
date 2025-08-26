@@ -17,7 +17,7 @@ export default function Login() {
     setError(null)
 
     const allowedCredentials = [
-      { email: 'admin@travelapp.com', password: 'Admin_T@5690' }
+      { email: 'admin@travelmoneyapp.com', password: 'Admin_T@5690' }
     ]
 
     try {
