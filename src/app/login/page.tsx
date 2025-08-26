@@ -2,12 +2,14 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Eye, EyeOff } from 'lucide-react'
 
 export default function Login() {
-  const [email, setEmail] = useState<string>('') // explicitly typed
-  const [password, setPassword] = useState<string>('') // explicitly typed
+  const [email, setEmail] = useState<string>('') 
+  const [password, setPassword] = useState<string>('') 
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null) // can be string or null
+  const [error, setError] = useState<string | null>(null) 
+  const [showPassword, setShowPassword] = useState<boolean>(false) // 👈 new state
   
   const router = useRouter()
 
@@ -76,16 +78,25 @@ export default function Login() {
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                 Password
               </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                placeholder="••••••••"
-              />
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'} // 👈 toggle here
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors pr-12"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
             </div>
 
             {error && (
@@ -106,10 +117,6 @@ export default function Login() {
               <p className="text-gray-600 text-sm">
                 Contact your administrator for access credentials
               </p>
-            </div>
-
-            <div className="text-center">
-             
             </div>
           </form>
         </div>
