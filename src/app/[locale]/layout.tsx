@@ -1,13 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import '../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { locales } from '../../i18n/request';
+import { locales, getMessages } from '../../i18n';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export async function generateStaticParams() {
     return locales.map((locale) => ({ locale }));
@@ -19,11 +15,11 @@ export async function generateMetadata({
     params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
     const { locale } = await params;
-    const messages = await getMessages({ locale });
+    const messages = await getMessages(locale);
 
     return {
-        title: messages('seo.home.title') as string,
-        description: messages('seo.home.description') as string,
+        title: messages.seo.home.title,
+        description: messages.seo.home.description,
         alternates: {
             canonical: `/${locale}`,
             languages: {
@@ -43,16 +39,16 @@ export default async function LocaleLayout({
     params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
-    const messages = await getMessages({ locale });
+    const messages = await getMessages(locale);
 
     return (
         <NextIntlClientProvider messages={messages}>
             <div className="min-h-screen flex flex-col">
-                <Navbar locale={locale} />
+                <Navbar lang={locale} />
                 <main className="flex-grow">
                     {children}
                 </main>
-                <Footer locale={locale} />
+                <Footer lang={locale} />
             </div>
         </NextIntlClientProvider>
     );

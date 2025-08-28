@@ -1,0 +1,20 @@
+{
+    "seo": {
+        "home": {
+            "title": "Travel Money - Your Global Financial Companion",
+            "description": "Manage your money globally with Travel Money. Send, receive, and exchange currencies worldwide with competitive rates and zero hidden fees."
+        }
+    },
+    "navigation": {
+        "home": "Home",
+        "about": "About",
+        "features": "Features",
+        "blog": "Blog",
+        "contact": "Contact"
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "notFound": "Page not found"
+    }
+}

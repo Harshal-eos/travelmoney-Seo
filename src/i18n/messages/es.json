@@ -1,0 +1,20 @@
+{
+    "seo": {
+        "home": {
+            "title": "Travel Money - Tu Compañero Financiero Global",
+            "description": "Gestiona tu dinero globalmente con Travel Money. Envía, recibe e intercambia divisas en todo el mundo con tasas competitivas y cero comisiones ocultas."
+        }
+    },
+    "navigation": {
+        "home": "Inicio",
+        "about": "Acerca de",
+        "features": "Características",
+        "blog": "Blog",
+        "contact": "Contacto"
+    },
+    "common": {
+        "loading": "Cargando...",
+        "error": "Ocurrió un error",
+        "notFound": "Página no encontrada"
+    }
+}
