@@ -1,15 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
-import { Button } from "../components/ui/button";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
+import { Button } from "../../components/ui/button";
 import { Store, CheckCircle, Globe } from "lucide-react";
 import Image from "next/image";
-import MerchantApplicationForm from "../merchant-form/MerchantApplicationForm";
-import AnimatedImage from "../components/ui/AnimatedImage";
+import MerchantApplicationForm from "../../merchant-form/MerchantApplicationForm";
 
-const Merchants = () => {
+interface MerchantsContentProps {
+  lang: string;
+}
+
+export default function MerchantsContent({ lang }: MerchantsContentProps) {
   const [formOpen, setFormOpen] = useState(false);
 
   const openApplicationForm = () => {
@@ -18,7 +21,7 @@ const Merchants = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar lang={lang} />
 
       <main className="pt-24 pb-16">
         {/* Hero Section */}
@@ -197,9 +200,7 @@ const Merchants = () => {
 
       <MerchantApplicationForm open={formOpen} onOpenChange={setFormOpen} />
 
-      <Footer />
+      <Footer lang={lang} />
     </>
   );
-};
-
-export default Merchants;
+}

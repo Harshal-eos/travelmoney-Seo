@@ -6,7 +6,8 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/app/lib/utils';
 import { useIsMobile } from '@/app/hooks/use-mobile';
-import Image from "next/image"
+import Image from "next/image";
+import { LanguageDropdown } from '../ui/language-dropdown';
 
 interface NavLinkProps {
   href: string;
@@ -19,7 +20,11 @@ interface MobileNavLinkProps {
   children: React.ReactNode;
 }
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  lang: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ lang }) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const isMobile = useIsMobile();
@@ -56,7 +61,7 @@ const Navbar: React.FC = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href={`/${lang}`} className="flex items-center gap-2">
           <Image
             src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png"
             alt="TravelMoney Logo"
@@ -70,12 +75,13 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         {!isMobile && (
           <nav className="hidden md:flex items-center gap-8">
-            <NavLink href="/">Shoppers</NavLink>
-            <NavLink href="/merchants">Merchants</NavLink>
-            <NavLink href="/blog">Blog</NavLink>
-            <NavLink href="/faq">FAQ</NavLink>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="/extension">Extension</NavLink>
+            <NavLink href={`/${lang}`}>Shoppers</NavLink>
+            <NavLink href={`/${lang}/merchants`}>Merchants</NavLink>
+            <NavLink href={`/${lang}/blog`}>Blog</NavLink>
+            <NavLink href={`/${lang}/faq`}>FAQ</NavLink>
+            <NavLink href={`/${lang}/about`}>About</NavLink>
+            <NavLink href={`/${lang}/extension`}>Extension</NavLink>
+            <LanguageDropdown currentLang={lang} />
             <Button
               className="bg-travel-blue hover:bg-travel-blue-dark text-white font-medium rounded-full px-6 transition-spring"
               onClick={scrollToWaitlist}
@@ -107,12 +113,15 @@ const Navbar: React.FC = () => {
           )}
         >
           <nav className="flex flex-col items-center justify-center h-full gap-8 p-8">
-            <MobileNavLink href="/shoppers" onClick={() => setIsMenuOpen(false)}>Shoppers</MobileNavLink>
-            <MobileNavLink href="/merchants" onClick={() => setIsMenuOpen(false)}>Merchants</MobileNavLink>
-            <MobileNavLink href="/blog" onClick={() => setIsMenuOpen(false)}>Blog</MobileNavLink>
-            <MobileNavLink href="/faq" onClick={() => setIsMenuOpen(false)}>FAQ</MobileNavLink>
-            <MobileNavLink href="/about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
-            <MobileNavLink href="/extension" onClick={() => setIsMenuOpen(false)}>Extension</MobileNavLink>
+            <MobileNavLink href={`/${lang}`} onClick={() => setIsMenuOpen(false)}>Shoppers</MobileNavLink>
+            <MobileNavLink href={`/${lang}/merchants`} onClick={() => setIsMenuOpen(false)}>Merchants</MobileNavLink>
+            <MobileNavLink href={`/${lang}/blog`} onClick={() => setIsMenuOpen(false)}>Blog</MobileNavLink>
+            <MobileNavLink href={`/${lang}/faq`} onClick={() => setIsMenuOpen(false)}>FAQ</MobileNavLink>
+            <MobileNavLink href={`/${lang}/about`} onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
+            <MobileNavLink href={`/${lang}/extension`} onClick={() => setIsMenuOpen(false)}>Extension</MobileNavLink>
+            <div className="w-full flex justify-center">
+              <LanguageDropdown currentLang={lang} />
+            </div>
             <Button
               className="bg-travel-blue hover:bg-travel-blue-dark text-white font-medium rounded-full px-8 py-3 w-full max-w-xs transition-spring"
               onClick={scrollToWaitlist}

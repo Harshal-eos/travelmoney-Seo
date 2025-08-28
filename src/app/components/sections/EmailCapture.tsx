@@ -13,7 +13,11 @@ interface EmailCaptureState {
   isSuccess: boolean;
 }
 
-const EmailCapture: React.FC = () => {
+interface EmailCaptureProps {
+  lang: string;
+}
+
+const EmailCapture: React.FC<EmailCaptureProps> = ({ lang }) => {
   const [state, setState] = useState<EmailCaptureState>({
     email: "",
     isSubmitting: false,

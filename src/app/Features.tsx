@@ -36,7 +36,11 @@ const features = [
   }
 ];
 
-const Features: React.FC =  () => {
+interface FeaturesProps {
+  lang: string;
+}
+
+const Features: React.FC<FeaturesProps> = ({ lang }) => {
   return (
     <div id="features" className="py-24 px-6 md:px-12 bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-travel-gray-light to-transparent -z-10" />

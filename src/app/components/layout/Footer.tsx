@@ -35,21 +35,25 @@ const FooterLink: React.FC<FooterLinkProps> = ({ href, children, isExternal = fa
   );
 };
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  lang: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ lang }) => {
   const currentYear = new Date().getFullYear();
 
   const navigationLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/#features', label: 'Features' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/#contact', label: 'Contact' },
+    { href: `/${lang}`, label: 'Home' },
+    { href: `/${lang}#features`, label: 'Features' },
+    { href: `/${lang}/blog`, label: 'Blog' },
+    { href: `/${lang}#contact`, label: 'Contact' },
   ];
 
   const companyLinks = [
-    { href: '/about', label: 'About Us' },
-    { href: '/privacy', label: 'Privacy Policy' },
-    { href: '/terms', label: 'Terms of Service' },
-    { href: '/cookies', label: 'Cookie Policy' },
+    { href: `/${lang}/about`, label: 'About Us' },
+    { href: `/${lang}/privacy`, label: 'Privacy Policy' },
+    { href: `/${lang}/terms`, label: 'Terms of Service' },
+    { href: `/${lang}/cookies`, label: 'Cookie Policy' },
   ];
 
   return (
@@ -64,7 +68,7 @@ const Footer: React.FC = () => {
           {/* Company Info Section */}
           <div className="space-y-4">
             <div className="mb-2">
-              <Link href="/" aria-label="TravelMoney Home">
+              <Link href={`/${lang}`} aria-label="TravelMoney Home">
                 <Image
                   src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png"
                   alt="TravelMoney Logo"

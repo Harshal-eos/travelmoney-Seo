@@ -1,11 +1,18 @@
-
 import React from 'react';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-const Privacy = () => {
+import Navbar from '../../components/layout/Navbar';
+import Footer from '../../components/layout/Footer';
+import { use } from 'react';
+
+export default function Privacy({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = use(params);
+
   return (
     <>
-      <Navbar />
+      <Navbar lang={lang} />
       <main className="min-h-screen pt-32 pb-20 px-6 md:px-12">
         <div className="container mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -323,9 +330,7 @@ const Privacy = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </>
   );
-};
-
-export default Privacy;
+}

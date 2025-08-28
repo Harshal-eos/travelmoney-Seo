@@ -25,7 +25,11 @@ const blogPosts: (BlogPreviewPost & { featured?: boolean })[] = [
   }
 ];
 
-const BlogPreview: React.FC = () => {
+interface BlogPreviewProps {
+  lang: string;
+}
+
+const BlogPreview: React.FC<BlogPreviewProps> = ({ lang }) => {
   return (
     <section className="py-24 px-6 md:px-12 bg-white">
       <div className="container mx-auto">
@@ -47,7 +51,7 @@ const BlogPreview: React.FC = () => {
             className="rounded-full group"
             asChild
           >
-            <Link href="/blog">
+            <Link href={`/${lang}/blog`}>
               <span className="flex items-center gap-2">
                 View All Articles
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -58,7 +62,7 @@ const BlogPreview: React.FC = () => {
         
         <div className="flex justify-center">
           {blogPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
+            <BlogCard key={post.id} post={post} lang={lang} />
           ))}
         </div>
       </div>
@@ -68,15 +72,16 @@ const BlogPreview: React.FC = () => {
 
 interface BlogCardProps {
   post: (BlogPreviewPost & { featured?: boolean });
+  lang: string;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ post, lang }) => {
   return (
     <article 
       className="group rounded-2xl overflow-hidden border border-travel-gray-light hover:shadow-md transition-spring"
       style={{ animationDelay: `${post.delay}ms` }}
     >
-      <Link href={`/blog/${post.slug}`} className="block">
+              <Link href={`/${lang}/blog/${post.slug}`} className="block">
         <div className="p-6 space-y-4">
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1">

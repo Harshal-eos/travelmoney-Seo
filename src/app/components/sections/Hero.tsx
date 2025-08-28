@@ -6,7 +6,11 @@ import HeroContent from './hero/HeroContent';
 import PhoneFrame from './hero/PhoneFrame';
 import ScrollIndicator from './hero/ScrollIndicator';
 
-const Hero = () => {
+interface HeroProps {
+  lang: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ lang }) => {
   const scrollToFeatures = useCallback(() => {
     const featuresSection = document.getElementById('features');
     featuresSection?.scrollIntoView({ behavior: 'smooth' });

@@ -1,14 +1,20 @@
-
 import React from 'react';
 import Navbar from '@/app/components/layout/Navbar';
 import Footer from '@/app/components/layout/Footer';
 import { CardContent ,Card } from '@/app/components/ui/card';
 import { Building, Globe, Target, Users, ShoppingBag, Wallet, Award } from 'lucide-react';
+import { use } from 'react';
 
-const About = () => {
+export default function About({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = use(params);
+
   return (
     <>
-      <Navbar />
+      <Navbar lang={lang} />
       <main className="min-h-screen pt-32 pb-20 px-6 md:px-12">
         <div className="container mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -72,7 +78,7 @@ const About = () => {
                       <Globe size={20} className="text-travel-blue" />
                       100% Digital Experience
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-lg text-muted-foreground">
                       Say goodbye to paperwork and long lines. Our fully digital platform handles everything from receipt scanning to customs validation, with real-time tracking so you always know where your refund stands.
                     </p>
                   </CardContent>
@@ -105,9 +111,7 @@ const About = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </>
   );
-};
-
-export default About;
+}
