@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { Providers } from "../providers";
-import { use } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,24 +21,23 @@ export const metadata: Metadata = {
 export async function generateStaticParams() {
   return [
     { lang: 'en' },
+    { lang: 'fr' },
     { lang: 'es' }
   ];
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }) {
-  const { lang } = use(params);
+  const { lang } = await params;
 
   return (
-    <html lang={lang}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
+    <Providers>
+      {children}
+    </Providers>
   );
 }

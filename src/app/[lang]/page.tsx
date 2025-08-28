@@ -6,14 +6,13 @@ import Footer from "../components/layout/Footer";
 import EmailCapture from "../components/sections/EmailCapture";
 import BlogPreview from "../components/sections/BlogPreview";
 import AuthWrapper from "../components/auth/AuthWrapper";
-import { use } from "react";
 
-export default function Home({
+export default async function Home({
   params,
 }: {
   params: Promise<{ lang: string }>;
 }) {
-  const { lang } = use(params);
+  const { lang } = await params;
 
   return (
     <AuthWrapper>

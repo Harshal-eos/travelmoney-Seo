@@ -18,7 +18,7 @@ interface LanguageDropdownProps {
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'fr', name: 'French', flag: '🇫🇷' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'es', name: 'Spanish', flag: '🇪🇸' },
 ];
 
 export function LanguageDropdown({ currentLang }: LanguageDropdownProps) {
@@ -50,14 +50,14 @@ export function LanguageDropdown({ currentLang }: LanguageDropdownProps) {
           <ChevronDown className="h-3 w-3 text-gray-700" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-32 mt-1">
+      <DropdownMenuContent align="end" className="w-40 mt-1">
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}
             onClick={() => handleLanguageChange(language.code)}
             className={`cursor-pointer flex items-center gap-2 px-3 py-2 ${currentLang === language.code
-                ? 'bg-blue-50 text-blue-700'
-                : 'text-gray-700 hover:bg-gray-50'
+              ? 'bg-blue-50 text-blue-700'
+              : 'text-gray-700 hover:bg-gray-50'
               }`}
           >
             <span className="text-sm">{language.flag}</span>
