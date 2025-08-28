@@ -63,6 +63,7 @@ const Navbar: React.FC = () => {
             className="h-8 md:h-10"
             width={107}
             height={40}
+            priority
           />
         </Link>
 
