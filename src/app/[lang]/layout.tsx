@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export async function generateStaticParams() {
   return [
     { lang: 'en' },
-    { lang: 'fr' }
+    { lang: 'es' }
   ];
 }
 
@@ -34,7 +34,7 @@ export default function LocaleLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = use(params);
-  
+
   return (
     <html lang={lang}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
