@@ -8,6 +8,8 @@ import { cn } from '@/app/lib/utils';
 import { useIsMobile } from '@/app/hooks/use-mobile';
 import Image from "next/image";
 import { LanguageDropdown } from '../ui/language-dropdown';
+import { createPortal } from 'react-dom';
+import TypeformPopup from '../sections/TypeformPopup';
 
 interface NavLinkProps {
   href: string;
@@ -27,7 +29,13 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ lang }) => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -43,13 +51,18 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const scrollToWaitlist = (): void => {
-    const waitlistSection = document.querySelector('section:has(.glass)');
-    if (waitlistSection) {
-      waitlistSection.scrollIntoView({ behavior: 'smooth' });
-      if (isMenuOpen) {
-        setIsMenuOpen(false);
-      }
+  const handleJoinWaitlist = (): void => {
+    setIsPopupOpen(true);
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+
+    // Track the event
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "waitlist_signup_click", {
+        event_category: "engagement",
+        event_label: "navbar",
+      });
     }
   };
 
@@ -84,7 +97,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
             <LanguageDropdown currentLang={lang} />
             <Button
               className="bg-travel-blue hover:bg-travel-blue-dark text-white font-medium rounded-full px-6 transition-spring"
-              onClick={scrollToWaitlist}
+              onClick={handleJoinWaitlist}
             >
               Join Waitlist
             </Button>
@@ -124,12 +137,21 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
             </div>
             <Button
               className="bg-travel-blue hover:bg-travel-blue-dark text-white font-medium rounded-full px-8 py-3 w-full max-w-xs transition-spring"
-              onClick={scrollToWaitlist}
+              onClick={handleJoinWaitlist}
             >
               Join Waitlist
             </Button>
           </nav>
         </div>
+      )}
+
+      {/* Typeform Popup - Rendered as Portal */}
+      {mounted && isPopupOpen && createPortal(
+        <TypeformPopup
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+        />,
+        document.body
       )}
     </header>
   );
