@@ -56,7 +56,7 @@ const TypeformPopup: React.FC<TypeformPopupProps> = ({ isOpen, onClose }) => {
             <div className="relative w-[90vw] max-w-5xl h-[80vh] bg-white rounded-2xl shadow-2xl overflow-hidden mx-4 my-8 border border-gray-200">
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white">
-                    <h2 className="text-xl font-semibold text-gray-900">
+                    <h2 className="text-xl text-gray-900">
                         TravelMoney is currently in development. Secure your spot on the waitlist and get early access!
                     </h2>
                     <Button
