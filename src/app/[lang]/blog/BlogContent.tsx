@@ -37,31 +37,31 @@ const blogPostsPreview: BlogPostPreview[] = blogPosts.map(convertToPreview);
 // Update the first post to be featured and add proper excerpt
 blogPostsPreview[0].featured = true;
 blogPostsPreview[0].excerpt = 'Learn how to make the most of your travel shopping while exploring Paris with this hands-on VAT Refunds guide.';
-blogPostsPreview[0].image = '/lovable-uploads/dd63fd82-fd6c-44c0-9ad3-f4495cb3ffa9.png';
+blogPostsPreview[0].image = '/lovable-uploads/card-image.png';
 
 // Add excerpt for the pharmacy guide
 blogPostsPreview[1].excerpt = 'Discover the best French pharmacy products and save up to 70% on premium skincare, haircare, and wellness products during your Paris visit.';
-blogPostsPreview[1].image = '/lovable-uploads/french-pharmacy-guide.jpg';
+blogPostsPreview[1].image = '/lovable-uploads/card-image.png';
 
 // Add excerpt for the Belgium VAT guide
 blogPostsPreview[2].excerpt = 'Complete guide to VAT refunds in Belgium - save up to 17% on your purchases with our step-by-step process for tax-free shopping.';
-blogPostsPreview[2].image = '/lovable-uploads/vat-refund-belgium.jpg';
+blogPostsPreview[2].image = '/lovable-uploads/card-image.png';
 
 // Add excerpt for the Portugal VAT guide
 blogPostsPreview[3].excerpt = 'Complete guide to VAT refunds in Portugal - save up to 20% on your purchases with Europe\'s highest VAT rate and regional advantages.';
-blogPostsPreview[3].image = '/lovable-uploads/vat-refund-portugal.jpg';
+blogPostsPreview[3].image = '/lovable-uploads/card-image.png';
 
 // Add excerpt for the Spain VAT guide
 blogPostsPreview[4].excerpt = 'Complete guide to VAT refunds in Spain - save up to 15.7% on your purchases with no minimum spend requirement and DIVA kiosk validation.';
-blogPostsPreview[4].image = '/lovable-uploads/vat-refund-spain.jpg';
+blogPostsPreview[4].image = '/lovable-uploads/card-image.png';
 
 // Add excerpt for the Italy VAT guide
 blogPostsPreview[5].excerpt = 'Complete guide to VAT refunds in Italy - save up to 18% on your purchases with Europe\'s highest VAT rate and OTELLO system validation.';
-blogPostsPreview[5].image = '/lovable-uploads/vat-refund-italy.jpg';
+blogPostsPreview[5].image = '/lovable-uploads/card-image.png';
 
 // Add excerpt for the Germany VAT guide
 blogPostsPreview[6].excerpt = 'Complete guide to VAT refunds in Germany - save up to 16% on your purchases with traditional manual customs validation and German precision.';
-blogPostsPreview[6].image = '/lovable-uploads/vat-refund-germany.jpg';
+blogPostsPreview[6].image = '/lovable-uploads/card-image.png';
 
 const categories = ['All', 'Travel', 'Shopping', 'Guide'];
 

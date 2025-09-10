@@ -16,7 +16,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
       className="group rounded-2xl overflow-hidden border-2 border-travel-blue/20 hover:border-travel-blue/40 hover:shadow-lg transition-all duration-300"
     >
       <Link href={`/blog/${post.slug}`} className="block">
-        <div className="relative overflow-hidden aspect-[16/9] bg-gradient-to-br from-travel-blue/5 to-travel-blue/10">
+        <div className="relative overflow-hidden aspect-[16/9]">
           <AnimatedImage
             src={post.image}
             alt={post.title}
@@ -26,7 +26,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
         </div>
 
         <div className="p-6 space-y-4">
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          <div className="flex items-center gap-4 text-sm text-black">
             <span className="inline-flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               {post.date}
