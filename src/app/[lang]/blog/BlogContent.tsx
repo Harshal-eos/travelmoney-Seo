@@ -8,7 +8,7 @@ import BlogSearch from '../../components/blog/BlogSearch';
 import CategoryFilter from '../../components/blog/CategoryFilter';
 import FeaturedPost from '../../components/blog/FeaturedPost';
 import BlogGrid from '../../components/blog/BlogGrid';
-import { BlogPostPreview } from '../../types/blog';
+import { BlogPostPreview, BlogPost } from '../../types/blog';
 import { blogPosts } from '../../data/blogPosts';
 
 interface BlogContentProps {
@@ -16,18 +16,18 @@ interface BlogContentProps {
 }
 
 // Convert BlogPost to BlogPostPreview format
-const convertToPreview = (post: any): BlogPostPreview => {
+const convertToPreview = (post: BlogPost): BlogPostPreview => {
     return {
         id: post.id,
         title: post.title,
         slug: post.slug,
-        excerpt: post.excerpt || 'Read more about this topic in our comprehensive guide.',
+        excerpt: 'Read more about this topic in our comprehensive guide.',
         image: post.image,
         date: post.date,
         author: post.author,
         category: post.category,
         delay: 0,
-        featured: post.featured || false
+        featured: false
     };
 };
 
