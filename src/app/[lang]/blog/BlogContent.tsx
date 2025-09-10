@@ -93,6 +93,21 @@ export default function BlogContent({ lang }: BlogContentProps) {
                     <div className="container mx-auto">
                         <BlogHeader />
 
+                        {/* Minimal Hero Section */}
+                        <div className="text-center mb-16">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-travel-blue/10 text-travel-blue text-sm font-medium mb-6">
+                                <div className="w-2 h-2 bg-travel-blue rounded-full animate-pulse"></div>
+                                Latest Travel & Shopping Insights
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                Discover <span className="text-travel-blue">Smart Shopping</span> Tips
+                            </h2>
+                            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                                Get the most out of your European travels with our expert guides on VAT refunds,
+                                shopping strategies, and money-saving tips.
+                            </p>
+                        </div>
+
                         <div className="flex flex-col sm:flex-row gap-4 mb-12">
                             <BlogSearch
                                 searchTerm={searchTerm}
