@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 
 import AnimatedImage from '../ui/AnimatedImage';
@@ -24,16 +23,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
             className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
             animationType="fade-in"
           />
-          <div className="absolute top-4 right-4">
-            <Image
-              src="/lovable-uploads/e14a4f31-f94d-46d8-aba2-e788bb5692d3.png"
-              alt="TravelMoney Logo"
-              className="h-8 w-auto"
-              width={32}
-              height={32}
-              quality={100}
-            />
-          </div>
         </div>
 
         <div className="p-6 space-y-4">
